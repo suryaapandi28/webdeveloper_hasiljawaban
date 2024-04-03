@@ -28,7 +28,7 @@ Route::controller(DashboardpenggunaController::class)->group(function () {
     Route::get('/portal/pengguna/peminjamaan/tambah', 'Tambahpinjam');
     Route::get('/portal/pengguna/peminjamaan/tambah/{idkendaraan}', 'Tambahnextpinjam');
 
-    Route::post('/portal/admin/peminjamaan/createpinjam', 'createpinjam');
+    Route::post('/portal/pengguna/peminjamaan/tambah/createpeminjaman', 'createpinjam');
 
 });
 

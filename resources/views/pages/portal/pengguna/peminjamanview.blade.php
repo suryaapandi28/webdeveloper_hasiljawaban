@@ -121,24 +121,20 @@
                             <table class="table " id="dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <th>Merk Kendaraan</th>
-                                                    <th>Model Kendaraan</th>
-                                                    <th>Plat Kendaraan</th>
-                                                    <th>Nominal Denda</th>
-                                                    <th>Status Kendaraan</th>
-                                                    <th>Action</th>
+                                                    <th>Code Peminjaman</th>
+                                                    <th>Tanggal Mulai </th>
+                                                    <th>Tanggal Selesai</th>
+                                                    <th>Status Peminjaman</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             @foreach ($getdatapeminjam['data'] as $peminjam)
 
                                                 <tr>
-                                                    <td>{{ $peminjam['merk_peminjam'] }}</td>
-                                                    <td>{{ $peminjam['model_peminjam'] }}</td>
-                                                    <td>{{ $peminjam['plat_peminjam'] }}</td>
-                                                    <td>{{ $peminjam['nominal_denda'] }}</td>
-                                                    <td>{{ $peminjam['status_peminjam'] }}</td>
-                                                    <td>hapus / edit</td>
+                                                    <td>{{ $peminjam['code_peminjamaan'] }}</td>
+                                                    <td>{{ $peminjam['tanggal_mulai'] }}</td>
+                                                    <td>{{ $peminjam['tanggal_selesai'] }}</td>
+                                                    <td>{{ $peminjam['status_peminjamaan'] }}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

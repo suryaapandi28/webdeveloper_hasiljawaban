@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\account_pengguna;
+use App\Models\pengguna;
 use App\Models\peminjaman_kendaraan;
 use App\Models\kendaraan;
 
@@ -186,7 +187,7 @@ class DashboardpenggunaController extends Controller
                         ];
 
                         // dd($getdatakendaraan);
-
+                        $request->session()->put('idkendaraan', $idkendaraan);
                         return view ('pages.portal.pengguna.peminjamannextambah',compact('getdatapengguna','getdataakun'));
                     }
                     elseif ($Data_account->role == 'admin')
@@ -206,8 +207,35 @@ class DashboardpenggunaController extends Controller
         }
     }
 
-    public function createpeminjam(Request $request)
+    public function createpinjam(Request $request)
     {
+        $idsess =    $request->session()->get('idcode');
+        $datapengguna = pengguna::where('code_account',$idsess)->first();
 
+        $idkendaraan =    $request->session()->get('idkendaraan');
+
+        $tglmulai = $request->input('tglmulai');
+        $tglselesai = $request->input('tglselesai');
+        $waktusewa = $request->input('waktusewa');
+
+        $record_kendaraan_peminjam =
+        [
+            'code_peminjamaan' => rand(1,99999999),
+            'code_kendaraan' => $idkendaraan,
+            'code_pengguna' => $datapengguna->code_pengguna,
+            'tanggal_mulai' => $tglmulai,
+            'tanggal_selesai' => $tglselesai,
+            'waktu_sewa' => $waktusewa,
+            'status_peminjaman' => 'berlangsung'
+        ];
+
+
+        peminjaman_kendaraan::create($record_kendaraan_peminjam);
+        kendaraan::where('code_kendaraan',$idkendaraan)->update(['status_kendaraan'=>'disewakan']);
+
+
+        return redirect('/portal/pengguna/peminjamaan/view')->with('success-SignIn', 'Berhasil meminjam');
+        // dd($record_kendaraan_peminjam);
+        // dd($idsess,$idkendaraan,$tglmulai,$tglselesai,$waktusewa);
     }
 }

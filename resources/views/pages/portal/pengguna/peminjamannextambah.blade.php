@@ -117,7 +117,7 @@
                                 <br><br><br>
                             </div>
                             <a href="../tambah"><button class="btn-primary" >Kembali</button></a><br><br>
-                            <form action="createpeminjam" method="POST">
+                            <form action="createpeminjaman" method="POST">
                                 @csrf
                             <div class="col-sm-12 col-xl-12">
                         <div class="bg-light rounded h-100 p-4">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="number" class="form-control" id="floatingPassword"
-                                    placeholder="model" required name="waktusewa">{{dd($request->parameter)}}
+                                    placeholder="model" required name="waktusewa">
                                 <label for="floatingPassword">Waktu Sewa</label>
                             </div>
 
